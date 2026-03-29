@@ -58,16 +58,6 @@ class HeroSection extends StatelessWidget {
           textAlign: isCenter ? TextAlign.center : TextAlign.start,
           style: AppConstants.kSubHeaderStyle.copyWith(color: AppConstants.kTextSecondaryColor),
         ),
-        const SizedBox(height: 40),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppConstants.kPrimaryColor,
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-          child: const Text("View Projects", style: TextStyle(color: Colors.white, fontSize: 16)),
-        ),
       ],
     );
   }
@@ -88,8 +78,14 @@ class HeroSection extends StatelessWidget {
           ),
         ],
       ),
-      child: const Center(
-        child: Icon(Icons.person, size: 150, color: AppConstants.kTextSecondaryColor),
+      child: Center(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(150),
+          child: Image.asset(
+            'assets/profile.jpg',
+            fit: BoxFit.cover,
+          ),
+        )
       ),
     );
   }

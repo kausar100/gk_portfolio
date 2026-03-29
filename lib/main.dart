@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'utils/constants.dart';
 import 'widgets/responsive_widget.dart';
 import 'widgets/hero_section.dart';
@@ -43,6 +44,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
   final GlobalKey _projectsKey = GlobalKey();
   final GlobalKey _skillsKey = GlobalKey();
   final GlobalKey _experienceKey = GlobalKey();
+
+  Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      debugPrint('Could not launch $url');
+    }
+  }
 
   void _scrollTo(GlobalKey key) {
     final context = key.currentContext;
@@ -175,7 +183,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   crossAxisCount: crossAxisCount,
                   crossAxisSpacing: 24,
                   mainAxisSpacing: 24,
-                  childAspectRatio: 1.1, // Adjusted for desktop/tablet
+                  childAspectRatio: 1.1,
                 ),
                 itemCount: myProjects.length,
                 itemBuilder: (context, index) {
@@ -316,7 +324,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
   Widget _buildSocialIcon(IconData icon, String url) {
     return IconButton(
       icon: Icon(icon, color: AppConstants.kTextColor, size: 30),
-      onPressed: () {},
+      onPressed: () => _launchURL(url),
     );
   }
 }

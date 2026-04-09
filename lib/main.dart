@@ -156,7 +156,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
     return Container(
       key: _projectsKey,
       padding: EdgeInsets.symmetric(
-        horizontal: ResponsiveWidget.isMobile(context) ? 20 : 50,
+        horizontal: ResponsiveWidget.isDesktop(context) ? 50 : 20,
         vertical: 80,
       ),
       child: Column(
@@ -176,19 +176,17 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   itemBuilder: (context, index) => ProjectCard(project: myProjects[index]),
                 );
               }
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 24,
-                  mainAxisSpacing: 24,
-                  childAspectRatio: 1.1,
-                ),
-                itemCount: myProjects.length,
-                itemBuilder: (context, index) {
-                  return ProjectCard(project: myProjects[index]);
-                },
+              
+              double spacing = 24;
+              double itemWidth = (constraints.maxWidth - (crossAxisCount - 1) * spacing) / crossAxisCount;
+              
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: myProjects.map((project) => SizedBox(
+                  width: itemWidth,
+                  child: ProjectCard(project: project),
+                )).toList(),
               );
             },
           ),

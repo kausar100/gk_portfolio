@@ -60,8 +60,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   .map((tech) => _buildTechChip(tech))
                   .toList(),
             ),
-            if (!ResponsiveWidget.isMobile(context)) const Spacer(),
-            if (ResponsiveWidget.isMobile(context)) const SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (widget.project.url != null)
               TextButton(
                 onPressed: () async {

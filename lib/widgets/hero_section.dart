@@ -64,8 +64,8 @@ class HeroSection extends StatelessWidget {
 
   Widget _buildProfilePlaceholder() {
     return Container(
-      width: 300,
-      height: 300,
+      width: 180,
+      height: 180,
       decoration: BoxDecoration(
         color: AppConstants.kCardColor,
         borderRadius: BorderRadius.circular(150),
@@ -78,7 +78,7 @@ class HeroSection extends StatelessWidget {
           ),
         ],
       ),
-      child: Center(
+      child: CircleAvatar(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(150),
           child: Image.asset(
